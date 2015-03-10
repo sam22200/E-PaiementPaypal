@@ -1,0 +1,1 @@
+<div id="pageFooter">Copyright | <a href="http://www.pxotestpaiement2.net16.net/storeadmin/">Admin</a></div>
