@@ -43,7 +43,7 @@ mysql_close();
   <div id="pageContent">
   <table width="100%" border="0" cellspacing="0" cellpadding="10">
   <tr>
-    <td width="32%" valign="top"><h3>What the Hell ARUE YOU DOING?</h3>
+    <td width="32%" valign="top"><h3>What the Hell ARUE YOU ING?</h3>
       <p>This website is very temporarily being used as an online live showcase area for an E - Commerce tutorial script set Adam is creating which can be seen on his channel here:<br />
         <a href="http://www.youtube.com/flashbuilding" target="_blank">http://www.youtube.com/flashbuilding</a> </p>
       <p>It is not an actual store and it will change directly after the tutorial series. <br />
