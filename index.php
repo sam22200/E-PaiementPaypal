@@ -43,7 +43,7 @@ mysql_close();
   <div id="pageContent">
   <table width="100%" border="0" cellspacing="0" cellpadding="10">
   <tr>
-    <td width="32%" valign="top"><h3>SITE DE TEST POUR LE E-PAIEMENT</h3>
+    <td width="32%" valign="top"><h3>SITE DE TEST POUR LE E-PAIEMENT BOOTSTRAP</h3>
       <p>Ce site Web est un site de test pour le paiement en ligne. Il permet de simuler l'achat de forfait Praxedo. Cliquez sur un produit et séléctionnez : Ajoutez au Panier <br />
         <a href="http://www.praxedo.com" target="_blank">www.praxedo.com</a> </p>
       <p>La seule plateforme de paiement pour l'instant est Paypal.<br />
