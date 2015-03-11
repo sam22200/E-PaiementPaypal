@@ -90,6 +90,7 @@ if (isset($_POST['index_to_remove']) && $_POST['index_to_remove'] != "") {
 //       Section 5  (render the cart for the user to view on the page)
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 $cartOutput = "";
+$cartOutputB = "";
 $cartTotal = "";
 $pp_checkout_btn = '';
 $product_id_array = '';
@@ -136,6 +137,15 @@ if (!isset($_SESSION["cart_array"]) || count($_SESSION["cart_array"]) < 1) {
 		$cartOutput .= '<td>' . $pricetotal . '</td>';
 		$cartOutput .= '<td><form action="cart.php" method="post"><input name="deleteBtn' . $item_id . '" type="submit" value="X" /><input name="index_to_remove" type="hidden" value="' . $i . '" /></form></td>';
 		$cartOutput .= '</tr>';
+
+    $cartOutputB .= '<div class="row" style="border:1px solid #ddd;">';
+//    $cartOutputB .= '<div class="jumbotron">';
+    $cartOutputB .= '<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 lg-offset-1">';
+    $cartOutputB .= '<img class="img-responsive img-thumbnail" src="inventory_images/'. $item_id . '.jpg" alt="'. $product_name . '>';
+    $cartOutputB .= '</div>';
+    $cartOutputB .= '</div>';
+    $cartOutputB .= '</div>';
+
 		$i++;
     }
 	setlocale(LC_ALL, "fr_FR");
@@ -156,48 +166,107 @@ if (!isset($_SESSION["cart_array"]) || count($_SESSION["cart_array"]) < 1) {
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//FR" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Votre panier</title>
-<link rel="stylesheet" href="style/style.css" type="text/css" media="screen" />
-</head>
-<body>
-<div align="center" id="mainWrapper">
-  <?php include_once("template_header.php");?>
-  <div id="pageContent">
-    <div style="margin:24px; text-align:left;">
 
-    <br />
-    <table width="100%" border="1" cellspacing="0" cellpadding="6">
-      <tr>
-        <td width="18%" bgcolor="#C5DFFA"><strong>Produit</strong></td>
-        <td width="45%" bgcolor="#C5DFFA"><strong>Description Produit</strong></td>
-        <td width="10%" bgcolor="#C5DFFA"><strong>Prix Unitaire</strong></td>
-        <td width="9%" bgcolor="#C5DFFA"><strong>Quantité</strong></td>
-        <td width="9%" bgcolor="#C5DFFA"><strong>Total</strong></td>
-        <td width="9%" bgcolor="#C5DFFA"><strong>Retirer</strong></td>
-      </tr>
-     <?php echo $cartOutput; ?>
-     <!-- <tr>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr> -->
-    </table>
-    <?php echo $cartTotal; ?>
-    <br />
-<br />
-<?php echo $pp_checkout_btn; ?>
-    <br />
-    <br />
-    <a href="cart.php?cmd=emptycart">Cliquez ici pour vider votre panier</a>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Votre panier</title>
+    <link rel="stylesheet" href="style/style.css" type="text/css" media="screen" />
+    <!-- Bootstrap Core CSS -->
+    <link href="style/bootstrap.min.css" rel="stylesheet">
+  </head>
+
+  <body>
+    <div id="mainWrapper">
+
+      <?php include_once("template_header.php");?>
+
+      <div id="pageContent">
+        <div id="cart-attributes">
+
+            <div class="container">
+
+              <div class="row">
+
+                  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 lg-offset-1  text-center"><span class="label label-default" style = "font-size: 18pt;">PRODUIT</span>
+                  </div>
+                  <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1  text-center"><span class="label label-default" style = "font-size: 18pt;">PRIX</span>
+                  </div>
+                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2  text-center"><span class="label label-default" style = "font-size: 18pt;">QUANTITE</span>
+                  </div>
+                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2  text-center"><span class="label label-default" style = "font-size: 18pt;">TOTAL</span>
+                  </div>
+                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 lg-offset-1  text-center"><span class="label label-default" style = "font-size: 18pt;">RETIRER</span>
+              </div>
+
+            </div>
+        </div>
+
+        <div id="cart-elements">
+            <div class="container">
+
+              <div class="row" style="border:1px solid #ddd;">
+
+                  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 lg-offset-1  text-center"><img class="img-responsive img-thumbnail img-center center-block" src="inventory_images/413.jpg">
+                  </div>
+                  <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-center"></span><span class="badge" style = "font-size: 18pt;">50€</span>
+                  </div>
+                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2  text-center"></span><span class="badge" style = "font-size: 18pt;">2</span>
+                  </div>
+                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-center"></span><span class="badge" style = "font-size: 18pt;">100€</span>
+                  </div>
+                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 lg-offset-1  text-center"><button type="button" class="btn btn-danger">X</button>
+                  </div>
+              </div>
+
+            </div>
+
+
+            <div class="container">
+
+              <div class="row" style="border:1px solid #ddd;">
+
+                  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 lg-offset-1  text-center"><img class="img-responsive img-thumbnail" src="inventory_images/414.jpg">
+                  </div>
+                  <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1  text-center"></span><span class="badge" style = "font-size: 18pt;">150€</span>
+                  </div>
+                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2  text-center"></span><span class="badge" style = "font-size: 18pt;">2</span>
+                  </div>
+                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2  text-center"></span><span class="badge" style = "font-size: 18pt;">300€</span>
+                  </div>
+                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 lg-offset-1  text-center"><button type="button" class="btn btn-danger">X</button>
+                  </div>
+              </div>
+
+            </div>
+
+            <div class="container">
+
+              <div class="row" style="border:1px solid #ddd;">
+
+                  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 lg-offset-1  text-center"><img class="img-responsive img-thumbnail" src="inventory_images/415.jpg">
+                  </div>
+                  <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1  text-center"></span><span class="badge" style = "font-size: 18pt;">150€</span>
+                  </div>
+                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2  text-center"></span><span class="badge" style = "font-size: 18pt;">1</span>
+                  </div>
+                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2  text-center"></span><span class="badge" style = "font-size: 18pt;">150€</span>
+                  </div>
+                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 lg-offset-1  text-center"><button type="button" class="btn btn-danger">X</button>
+                  </div>
+              </div>
+
+            </div>
+        </div>
+
+      </div>
+
+      <?php include_once("template_footer.php");?>
+      <!-- jQuery -->
+      <script src="js/jquery.js"></script>
+
+      <!-- Bootstrap Core JavaScript -->
+      <script src="js/bootstrap.min.js"></script>
     </div>
-   <br />
-  </div>
-  <?php include_once("template_footer.php");?>
-</div>
-</body>
+  </body>
+
 </html>
