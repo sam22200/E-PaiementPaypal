@@ -26,12 +26,12 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
 		 header("location: index.php");
          exit();
     } else {
-		echo 'That information is incorrect, try again <a href="index.php">Click Here</a>';
+		echo 'Informations incorrectes, essayez de nouveau <a href="index.php">Cliquez ici</a>';
 		exit();
 	}
 }
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//FR" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -44,12 +44,12 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
   <?php include_once("../template_header.php");?>
   <div id="pageContent"><br />
     <div align="left" style="margin-left:24px;">
-      <h2>Please Log In To Manage the Store</h2>
+      <h2>Connectez vous pour gérer le magasin</h2>
       <form id="form1" name="form1" method="post" action="admin_login.php">
-        User Name:<br />
+        Nom utilisateur:<br />
           <input name="username" type="text" id="username" size="40" />
         <br /><br />
-        Password:<br />
+        Mot de Passe:<br />
        <input name="password" type="password" id="password" size="40" />
        <br />
        <br />

@@ -68,7 +68,7 @@ if (isset($_GET['pid'])) {
     }
 }
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//FR" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -80,56 +80,56 @@ if (isset($_GET['pid'])) {
 <div align="center" id="mainWrapper">
   <?php include_once("../template_header.php");?>
   <div id="pageContent"><br />
-    <div align="right" style="margin-right:32px;"><a href="inventory_list.php#inventoryForm">+ Add New Inventory Item</a></div>
+    <div align="right" style="margin-right:32px;"><a href="inventory_list.php#inventoryForm">+ Ajouter un nouvel objet.</a></div>
 <div align="left" style="margin-left:24px;">
-      <h2>Inventory list</h2>
+      <h2>Liste des objets</h2>
       <?php echo $product_list; ?>
     </div>
     <hr />
     <a name="inventoryForm" id="inventoryForm"></a>
     <h3>
-    &darr; Add New Inventory Item Form &darr;
+    &darr; Remplissez le formulaire de l'objet &darr;
     </h3>
     <form action="inventory_edit.php" enctype="multipart/form-data" name="myForm" id="myform" method="post">
     <table width="90%" border="0" cellspacing="0" cellpadding="6">
       <tr>
-        <td width="20%" align="right">Product Name</td>
+        <td width="20%" align="right">Nom Produit</td>
         <td width="80%"><label>
           <input name="product_name" type="text" id="product_name" size="64" value="<?php echo $product_name; ?>" />
         </label></td>
       </tr>
       <tr>
-        <td align="right">Product Price</td>
+        <td align="right">Prix Produit</td>
         <td><label>
-          $
+          €
           <input name="price" type="text" id="price" size="12" value="<?php echo $price; ?>" />
         </label></td>
       </tr>
       <tr>
-        <td align="right">Category</td>
+        <td align="right">Catégorie</td>
         <td><label>
           <select name="category" id="category">
-          <option value="Clothing">Clothing</option>
+          <option value="FORFAIT">FORFAIT</option>
           </select>
         </label></td>
       </tr>
       <tr>
-        <td align="right">Subcategory</td>
+        <td align="right">Sous-Catégorie</td>
         <td><select name="subcategory" id="subcategory">
           <option value="<?php echo $subcategory; ?>"><?php echo $subcategory; ?></option>
-          <option value="Hats">Hats</option>
-          <option value="Pants">Pants</option>
-          <option value="Shirts">Shirts</option>
+          <option value="Hebdo">Hebdo</option>
+          <option value="Mois">Mois</option>
+          <option value="Annee">Année</option>
           </select></td>
       </tr>
       <tr>
-        <td align="right">Product Details</td>
+        <td align="right">Détails Objet</td>
         <td><label>
           <textarea name="details" id="details" cols="64" rows="5"><?php echo $details; ?></textarea>
         </label></td>
       </tr>
       <tr>
-        <td align="right">Product Image</td>
+        <td align="right">Illustration Objet</td>
         <td><label>
           <input type="file" name="fileField" id="fileField" />
         </label></td>
@@ -138,7 +138,7 @@ if (isset($_GET['pid'])) {
         <td>&nbsp;</td>
         <td><label>
           <input name="thisID" type="hidden" value="<?php echo $targetID; ?>" />
-          <input type="submit" name="button" id="button" value="Make Changes" />
+          <input type="submit" name="button" id="button" value="Appliquer !" />
         </label></td>
       </tr>
     </table>

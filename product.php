@@ -48,8 +48,8 @@ mysql_close();
   <div id="pageContent">
   <table width="100%" border="0" cellspacing="0" cellpadding="15">
   <tr>
-    <td width="19%" valign="top"><img src="inventory_images/<?php echo $id; ?>.jpg" width="142" height="188" alt="<?php echo $product_name; ?>" /><br />
-      <a href="inventory_images/<?php echo $id; ?>.jpg">View Full Size Image</a></td>
+    <td width="19%" valign="top"><img src="inventory_images/<?php echo $id; ?>.jpg" width="250" height="150" alt="<?php echo $product_name; ?>" /><br />
+      <a href="inventory_images/<?php echo $id; ?>.jpg">Voir image Taille réelle</a></td>
     <td width="81%" valign="top"><h3><?php echo $product_name; ?></h3>
       <p><?php echo "€".$price; ?><br />
         <br />
@@ -60,7 +60,7 @@ mysql_close();
         </p>
       <form id="form1" name="form1" method="post" action="cart.php">
         <input type="hidden" name="pid" id="pid" value="<?php echo $id; ?>" />
-        <input type="submit" name="button" id="button" value="Add to Shopping Cart" />
+        <input type="submit" name="button" id="button" value="Ajouter au Panier" />
       </form>
       </td>
     </tr>

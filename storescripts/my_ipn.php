@@ -102,9 +102,30 @@ $payer_email = $_POST['payer_email'];
 $custom = $_POST['custom'];
 mail("samuel.coz@praxedo.com", "POST Variable log", json_encode($_POST) , "From: PXO_SELL_1@seller.fr" );
 // Place the transaction into the database
-$test = $_POST['last_name'];
+$first_name = $_POST['first_name'];
+$last_name = $_POST['last_name'];
+$payment_date = $_POST['payment_date'];
+$mc_gross = $_POST['mc_gross'];
+$payment_currency = $_POST['mc_currency'];
+$payment_type = $_POST['payment_type'];
+$payment_status = $_POST['payment_status'];
+$txn_type = $_POST['txn_type'];
+$payer_status = $_POST['payer_status'];
+$address_street = $_POST['address_street'];
+$address_city = $_POST['address_city'];
+$address_state = $_POST['address_state'];
+$address_zip = $_POST['address_zip'];
+$address_country = $_POST['address_country'];
+$address_status = $_POST['address_status'];
+$notify_version = $_POST['notify_version'];
+$verify_sign = $_POST['verify_sign'];
+$payer_id = $_POST['payer_id'];
+$mc_currency = $_POST['mc_currency'];
+$mc_fee = $_POST['mc_fee'];
+
+
 $sql = mysql_query("INSERT INTO transactions (product_id_array, payer_email, first_name, last_name, payment_date, mc_gross, payment_currency, txn_id, receiver_email, payment_type, payment_status, txn_type, payer_status, address_street, address_city, address_state, address_zip, address_country, address_status, notify_version, verify_sign, payer_id, mc_currency, mc_fee)
-   VALUES('$custom','$payer_email','$first_name','$test','$payment_date','$mc_gross','$payment_currency','$txn_id','$receiver_email','$payment_type','$payment_status','$txn_type','$payer_status','$address_street','$address_city','$address_state','$address_zip','$address_country','$address_status','$notify_version','$verify_sign','$payer_id','$mc_currency','$mc_fee')") or die ("unable to execute the query");
+   VALUES('$custom','$payer_email','$first_name','$last_name','$payment_date','$mc_gross','$payment_currency','$txn_id','$receiver_email','$payment_type','$payment_status','$txn_type','$payer_status','$address_street','$address_city','$address_state','$address_zip','$address_country','$address_status','$notify_version','$verify_sign','$payer_id','$mc_currency','$mc_fee')") or die ("unable to execute the query");
 
 mysql_close();
 // Mail yourself the details

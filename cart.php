@@ -124,7 +124,7 @@ if (!isset($_SESSION["cart_array"]) || count($_SESSION["cart_array"]) < 1) {
 		$product_id_array .= "$item_id-".$each_item['quantity'].",";
 		// Dynamic table row assembly
 		$cartOutput .= "<tr>";
-		$cartOutput .= '<td><a href="product.php?id=' . $item_id . '">' . $product_name . '</a><br /><img src="inventory_images/' . $item_id . '.jpg" alt="' . $product_name. '" width="40" height="52" border="1" /></td>';
+		$cartOutput .= '<td><a href="product.php?id=' . $item_id . '">' . $product_name . '</a><br /><img src="inventory_images/' . $item_id . '.jpg" alt="' . $product_name. '" width="125" height="75" border="1" /></td>';
 		$cartOutput .= '<td>' . $details . '</td>';
 		$cartOutput .= '<td>€' . $price . '</td>';
 		$cartOutput .= '<td><form action="cart.php" method="post">
@@ -154,11 +154,11 @@ if (!isset($_SESSION["cart_array"]) || count($_SESSION["cart_array"]) < 1) {
 	</form>';
 }
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//FR" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Your Cart</title>
+<title>Votre panier</title>
 <link rel="stylesheet" href="style/style.css" type="text/css" media="screen" />
 </head>
 <body>
@@ -170,12 +170,12 @@ if (!isset($_SESSION["cart_array"]) || count($_SESSION["cart_array"]) < 1) {
     <br />
     <table width="100%" border="1" cellspacing="0" cellpadding="6">
       <tr>
-        <td width="18%" bgcolor="#C5DFFA"><strong>Product</strong></td>
-        <td width="45%" bgcolor="#C5DFFA"><strong>Product Description</strong></td>
-        <td width="10%" bgcolor="#C5DFFA"><strong>Unit Price</strong></td>
-        <td width="9%" bgcolor="#C5DFFA"><strong>Quantity</strong></td>
+        <td width="18%" bgcolor="#C5DFFA"><strong>Produit</strong></td>
+        <td width="45%" bgcolor="#C5DFFA"><strong>Description Produit</strong></td>
+        <td width="10%" bgcolor="#C5DFFA"><strong>Prix Unitaire</strong></td>
+        <td width="9%" bgcolor="#C5DFFA"><strong>Quantité</strong></td>
         <td width="9%" bgcolor="#C5DFFA"><strong>Total</strong></td>
-        <td width="9%" bgcolor="#C5DFFA"><strong>Remove</strong></td>
+        <td width="9%" bgcolor="#C5DFFA"><strong>Retirer</strong></td>
       </tr>
      <?php echo $cartOutput; ?>
      <!-- <tr>
@@ -193,7 +193,7 @@ if (!isset($_SESSION["cart_array"]) || count($_SESSION["cart_array"]) < 1) {
 <?php echo $pp_checkout_btn; ?>
     <br />
     <br />
-    <a href="cart.php?cmd=emptycart">Click Here to Empty Your Shopping Cart</a>
+    <a href="cart.php?cmd=emptycart">Cliquez ici pour vider votre panier</a>
     </div>
    <br />
   </div>

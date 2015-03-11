@@ -83,13 +83,13 @@ if ($productCount > 0) {
 			 $product_name = $row["product_name"];
 			 $price = $row["price"];
 			 $date_added = strftime("%b %d, %Y", strtotime($row["date_added"]));
-			 $product_list .= "Product ID: $id - <strong>$product_name</strong> - $$price - <em>Added $date_added</em> &nbsp; &nbsp; &nbsp; <a href='inventory_edit.php?pid=$id'>edit</a> &bull; <a href='inventory_list.php?deleteid=$id'>delete</a><br />";
+			 $product_list .= "Product ID: $id - <strong>$product_name</strong> - $$price - <em>Ajouté le $date_added</em> &nbsp; &nbsp; &nbsp; <a href='inventory_edit.php?pid=$id'>Modifier</a> &bull; <a href='inventory_list.php?deleteid=$id'>Supprimer</a><br />";
     }
 } else {
 	$product_list = "You have no products listed in your store yet";
 }
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//FR" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -101,56 +101,56 @@ if ($productCount > 0) {
 <div align="center" id="mainWrapper">
   <?php include_once("../template_header.php");?>
   <div id="pageContent"><br />
-    <div align="right" style="margin-right:32px;"><a href="inventory_list.php#inventoryForm">+ Add New Inventory Item</a></div>
+    <div align="right" style="margin-right:32px;"><a href="inventory_list.php#inventoryForm">+ Ajouter un nouvel objet</a></div>
 <div align="left" style="margin-left:24px;">
-      <h2>Inventory list</h2>
+      <h2>Liste Inventaire</h2>
       <?php echo $product_list; ?>
     </div>
     <hr />
     <a name="inventoryForm" id="inventoryForm"></a>
     <h3>
-    &darr; Add New Inventory Item Form &darr;
+    &darr; Remplissez le formulaire &darr;
     </h3>
     <form action="inventory_list.php" enctype="multipart/form-data" name="myForm" id="myform" method="post">
     <table width="90%" border="0" cellspacing="0" cellpadding="6">
       <tr>
-        <td width="20%" align="right">Product Name</td>
+        <td width="20%" align="right">Nom Objet</td>
         <td width="80%"><label>
           <input name="product_name" type="text" id="product_name" size="64" />
         </label></td>
       </tr>
       <tr>
-        <td align="right">Product Price</td>
+        <td align="right">Prix Objet</td>
         <td><label>
-          $
+          €
           <input name="price" type="text" id="price" size="12" />
         </label></td>
       </tr>
       <tr>
-        <td align="right">Category</td>
+        <td align="right">Catégorie</td>
         <td><label>
           <select name="category" id="category">
-          <option value="Clothing">Clothing</option>
+          <option value="FORFAIT">FORFAIT</option>
           </select>
         </label></td>
       </tr>
       <tr>
-        <td align="right">Subcategory</td>
+        <td align="right">Sous-Catégorie</td>
         <td><select name="subcategory" id="subcategory">
         <option value=""></option>
-          <option value="Hats">Hats</option>
-          <option value="Pants">Pants</option>
-          <option value="Shirts">Shirts</option>
+          <option value="Hebdo">Hebdo</option>
+          <option value="Mois">Mois</option>
+          <option value="Annee">Année</option>
           </select></td>
       </tr>
       <tr>
-        <td align="right">Product Details</td>
+        <td align="right">Détail Objet</td>
         <td><label>
           <textarea name="details" id="details" cols="64" rows="5"></textarea>
         </label></td>
       </tr>
       <tr>
-        <td align="right">Product Image</td>
+        <td align="right">Illustration Objet</td>
         <td><label>
           <input type="file" name="fileField" id="fileField" />
         </label></td>
@@ -158,7 +158,7 @@ if ($productCount > 0) {
       <tr>
         <td>&nbsp;</td>
         <td><label>
-          <input type="submit" name="button" id="button" value="Add This Item Now" />
+          <input type="submit" name="button" id="button" value="Ajouter l'objet maintenant !" />
         </label></td>
       </tr>
     </table>
