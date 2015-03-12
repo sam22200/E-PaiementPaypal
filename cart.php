@@ -89,13 +89,12 @@ if (isset($_POST['index_to_remove']) && $_POST['index_to_remove'] != "") {
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //       Section 5  (render the cart for the user to view on the page)
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-$cartOutput = "";
 $cartOutputB = "";
 $cartTotal = "";
 $pp_checkout_btn = '';
 $product_id_array = '';
 if (!isset($_SESSION["cart_array"]) || count($_SESSION["cart_array"]) < 1) {
-    $cartOutput = "<h2 align='center'>Your shopping cart is empty</h2>";
+    $cartOutputB = "<h3 align='center'>Votre panier est vide</h3>";
 } else {
 	// Start PayPal Checkout Button
 	$pp_checkout_btn .= '<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
@@ -115,7 +114,7 @@ if (!isset($_SESSION["cart_array"]) || count($_SESSION["cart_array"]) < 1) {
 		$pricetotal = $price * $each_item['quantity'];
 		$cartTotal = $pricetotal + $cartTotal;
 		setlocale(LC_ALL, "fr_FR");
-        $pricetotal = money_format("%10.2n", $pricetotal);
+        $pricetotal = money_format("%10.0n", $pricetotal);
 		// Dynamic Checkout Btn Assembly
 		$x = $i + 1;
 		$pp_checkout_btn .= '<input type="hidden" name="item_name_' . $x . '" value="' . $product_name . '">
@@ -124,33 +123,49 @@ if (!isset($_SESSION["cart_array"]) || count($_SESSION["cart_array"]) < 1) {
 		// Create the product array variable
 		$product_id_array .= "$item_id-".$each_item['quantity'].",";
 		// Dynamic table row assembly
-		$cartOutput .= "<tr>";
-		$cartOutput .= '<td><a href="product.php?id=' . $item_id . '">' . $product_name . '</a><br /><img src="inventory_images/' . $item_id . '.jpg" alt="' . $product_name. '" width="125" height="75" border="1" /></td>';
-		$cartOutput .= '<td>' . $details . '</td>';
-		$cartOutput .= '<td>€' . $price . '</td>';
-		$cartOutput .= '<td><form action="cart.php" method="post">
-		<input name="quantity" type="text" value="' . $each_item['quantity'] . '" size="1" maxlength="2" />
-		<input name="adjustBtn' . $item_id . '" type="submit" value="change" />
-		<input name="item_to_adjust" type="hidden" value="' . $item_id . '" />
-		</form></td>';
-		//$cartOutput .= '<td>' . $each_item['quantity'] . '</td>';
-		$cartOutput .= '<td>' . $pricetotal . '</td>';
-		$cartOutput .= '<td><form action="cart.php" method="post"><input name="deleteBtn' . $item_id . '" type="submit" value="X" /><input name="index_to_remove" type="hidden" value="' . $i . '" /></form></td>';
-		$cartOutput .= '</tr>';
+    $cartOutputB .= '<div class="container">';
 
-    $cartOutputB .= '<div class="row" style="border:1px solid #ddd;">';
-//    $cartOutputB .= '<div class="jumbotron">';
-    $cartOutputB .= '<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 lg-offset-1">';
-    $cartOutputB .= '<img class="img-responsive img-thumbnail" src="inventory_images/'. $item_id . '.jpg" alt="'. $product_name . '>';
-    $cartOutputB .= '</div>';
-    $cartOutputB .= '</div>';
+      $cartOutputB .= '<div class="rom" style="border:1px solid #ddd;">';
+
+        $cartOutputB .= '<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 lg-offset-1  text-center">';
+          $cartOutputB .= '<img class="img-responsive img-thumbnail img-center center-block" src="inventory_images/' . $item_id . '.jpg" alt="' . $product_name. '" />';
+        $cartOutputB .= '</div>';
+        $cartOutputB .= '<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-center">';
+          $cartOutputB .= '<span class="badge" style = "font-size: 1vw;">' . $price . 'EUR</span>';
+        $cartOutputB .= '</div>';
+
+        $cartOutputB .= '<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2  text-center">';
+          $cartOutputB .= '<form action="cart.php" method="post">';
+            $cartOutputB .= '<div class="input-group">';
+              $cartOutputB .= '<input name="quantity" type="text" class="form-control" value="' . $each_item['quantity'] . '" maxlength="2" />';
+              $cartOutputB .= '<span class="input-group-btn">';
+                $cartOutputB .= '<input class="btn btn-danger" name="adjustBtn' . $item_id . '" type="submit" value="Changer" />';
+              $cartOutputB .= '</span>';
+            $cartOutputB .= '</div>';
+            $cartOutputB .= '<input name="item_to_adjust" type="hidden" value="' . $item_id . '" />';
+          $cartOutputB .= '</form>';
+        $cartOutputB .= '</div>';
+
+        $cartOutputB .= '</div>';
+          $cartOutputB .= '<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-center"><span class="badge" style = "font-size: 1vw;">' . $pricetotal . '</span>';
+        $cartOutputB .= '</div>';
+
+        $cartOutputB .= '<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 lg-offset-1  text-center">';
+          $cartOutputB .= '<form action="cart.php" method="post">';
+            $cartOutputB .= '<input class="btn btn-danger" name="deleteBtn' . $item_id . '" type="submit" value="X" />';
+            $cartOutputB .= '<input name="index_to_remove" type="hidden" value="' . $i . '" />';
+          $cartOutputB .= '</form>';
+        $cartOutputB .= '</div>';
+
+      $cartOutputB .= '</div>';
+
     $cartOutputB .= '</div>';
 
 		$i++;
     }
 	setlocale(LC_ALL, "fr_FR");
     $cartTotal = money_format("%10.2n", $cartTotal);
-	$cartTotal = "<div style='font-size:18px; margin-top:12px;' align='right'>Cart Total : ".$cartTotal."</div>";
+	$cartTotal = "<div style='font-size:1vw; margin-top:12px;' align='right'>Total Panier : ".$cartTotal."</div>";
     // Finish the Paypal Checkout Btn
 	$pp_checkout_btn .= '<input type="hidden" name="custom" value="' . $product_id_array . '">
 	<input type="hidden" name="notify_url" value="http://www.pxotestpaiement2.net16.net/storescripts/my_ipn.php">
@@ -180,82 +195,63 @@ if (!isset($_SESSION["cart_array"]) || count($_SESSION["cart_array"]) < 1) {
 
       <?php include_once("template_header.php");?>
 
-      <div id="pageContent">
-        <div id="cart-attributes">
+      <div class="jumbotron">
+
+        <div id="pageContent">
+          <div id="cart-attributes">
 
             <div class="container">
 
-              <div class="row">
+                <div class="row">
 
-                  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 lg-offset-1  text-center"><span class="label label-default" style = "font-size: 18pt;">PRODUIT</span>
-                  </div>
-                  <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1  text-center"><span class="label label-default" style = "font-size: 18pt;">PRIX</span>
-                  </div>
-                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2  text-center"><span class="label label-default" style = "font-size: 18pt;">QUANTITE</span>
-                  </div>
-                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2  text-center"><span class="label label-default" style = "font-size: 18pt;">TOTAL</span>
-                  </div>
-                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 lg-offset-1  text-center"><span class="label label-default" style = "font-size: 18pt;">RETIRER</span>
-              </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 lg-offset-1  text-center"><span class="label label-default" style = "font-size: 1vw;">PRODUIT</span>
+                    </div>
+                    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1  text-center"><span class="label label-default" style = "font-size: 1vw;">PRIX</span>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2  text-center"><span class="label label-default" style = "font-size: 1vw;">QUANTITE</span>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2  text-center"><span class="label label-default" style = "font-size: 1vw;">TOTAL</span>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 lg-offset-1  text-center"><span class="label label-default" style = "font-size: 1vw;">RETIRER</span>
+                </div>
 
             </div>
-        </div>
 
-        <div id="cart-elements">
+          </div>
+
+          <div id="cart-elements">
+            <?php echo $cartOutputB; ?>
+          </div>
+
+          <div id="checkout-elements">
+
+            <div class="row">
+              <div class="col-lg-6 text-center">
+                <a style="font-size: 1vw;" href="cart.php?cmd=emptycart">Cliquez ici pour vider le panier</a>
+              </div>
+              <div class="col-lg-6 text-center">
+
+                  <span class="badge" style = "font-size: 1vw;">
+                      <?php echo $cartTotal; ?>
+                  </span>
+
+              </div>
+            </div>
+
+          </div>
+
+          <div id="paypal-elements">
             <div class="container">
 
-              <div class="row" style="border:1px solid #ddd;">
-
-                  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 lg-offset-1  text-center"><img class="img-responsive img-thumbnail img-center center-block" src="inventory_images/413.jpg">
-                  </div>
-                  <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-center"></span><span class="badge" style = "font-size: 18pt;">50€</span>
-                  </div>
-                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2  text-center"></span><span class="badge" style = "font-size: 18pt;">2</span>
-                  </div>
-                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-center"></span><span class="badge" style = "font-size: 18pt;">100€</span>
-                  </div>
-                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 lg-offset-1  text-center"><button type="button" class="btn btn-danger">X</button>
-                  </div>
+              <div class="row text-center">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+                  <?php echo $pp_checkout_btn; ?>
+                </div>
               </div>
 
             </div>
+          </div>
 
-
-            <div class="container">
-
-              <div class="row" style="border:1px solid #ddd;">
-
-                  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 lg-offset-1  text-center"><img class="img-responsive img-thumbnail" src="inventory_images/414.jpg">
-                  </div>
-                  <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1  text-center"></span><span class="badge" style = "font-size: 18pt;">150€</span>
-                  </div>
-                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2  text-center"></span><span class="badge" style = "font-size: 18pt;">2</span>
-                  </div>
-                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2  text-center"></span><span class="badge" style = "font-size: 18pt;">300€</span>
-                  </div>
-                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 lg-offset-1  text-center"><button type="button" class="btn btn-danger">X</button>
-                  </div>
-              </div>
-
-            </div>
-
-            <div class="container">
-
-              <div class="row" style="border:1px solid #ddd;">
-
-                  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 lg-offset-1  text-center"><img class="img-responsive img-thumbnail" src="inventory_images/415.jpg">
-                  </div>
-                  <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1  text-center"></span><span class="badge" style = "font-size: 18pt;">150€</span>
-                  </div>
-                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2  text-center"></span><span class="badge" style = "font-size: 18pt;">1</span>
-                  </div>
-                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2  text-center"></span><span class="badge" style = "font-size: 18pt;">150€</span>
-                  </div>
-                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 lg-offset-1  text-center"><button type="button" class="btn btn-danger">X</button>
-                  </div>
-              </div>
-
-            </div>
         </div>
 
       </div>
